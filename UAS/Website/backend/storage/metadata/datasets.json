@@ -1,0 +1,26 @@
+[
+  {
+    "id": "dbe1338a-c47f-44bf-8c51-5806b34f6a8a",
+    "original_filename": "online_gaming_behavior_sample_1000.csv",
+    "stored_filename": "dbe1338a-c47f-44bf-8c51-5806b34f6a8a_online_gaming_behavior_sample_1000.csv",
+    "path": "D:\\PERKULIAHAN\\Semester 6\\Machine Learning\\TUBES_ML\\UAS\\Website\\backend\\storage\\datasets\\dbe1338a-c47f-44bf-8c51-5806b34f6a8a_online_gaming_behavior_sample_1000.csv",
+    "rows": 1000,
+    "columns": 13,
+    "column_names": [
+      "PlayerID",
+      "Age",
+      "Gender",
+      "Location",
+      "GameGenre",
+      "PlayTimeHours",
+      "InGamePurchases",
+      "GameDifficulty",
+      "SessionsPerWeek",
+      "AvgSessionDurationMinutes",
+      "PlayerLevel",
+      "AchievementsUnlocked",
+      "EngagementLevel"
+    ],
+    "created_at": "2026-05-25T20:46:39"
+  }
+]
