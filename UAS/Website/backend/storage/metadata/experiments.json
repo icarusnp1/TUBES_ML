@@ -1,61 +1,255 @@
 [
   {
-    "id": "e175978a-60f9-46ac-97c8-14bfa690c175",
-    "experiment_name": "Test",
-    "created_at": "2026-05-25T20:47:32",
+    "id": "18be1a98-495e-4a4d-a88d-2f6debd0b2eb",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:04:31",
     "dataset": {
-      "id": "dbe1338a-c47f-44bf-8c51-5806b34f6a8a",
-      "filename": "online_gaming_behavior_sample_1000.csv",
-      "rows": 1000,
-      "columns": 13
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "output_feature_count": 9,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.2,
+      "min_samples": 5,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.2."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 54,
+      "silhouette_score": 0.43490078088707324,
+      "davies_bouldin_index": 0.7261073027513744,
+      "calinski_harabasz_score": 118.32600561533397,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 54,
+      "0": 21,
+      "1": 75,
+      "2": 17
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "child_mort": 54.78703703703704,
+        "exports": 50.08016666666667,
+        "health": 6.828333333333334,
+        "imports": 54.328998148148145,
+        "income": 22339.722222222223,
+        "inflation": 11.734833333333334,
+        "life_expec": 67.3962962962963,
+        "total_fer": 3.581851851851852,
+        "gdpp": 16298.574074074075
+      },
+      {
+        "Cluster": 0,
+        "child_mort": 89.02857142857142,
+        "exports": 23.623333333333335,
+        "health": 5.5909523809523805,
+        "imports": 37.147619047619045,
+        "income": 1980.857142857143,
+        "inflation": 8.293571428571429,
+        "life_expec": 59.46190476190476,
+        "total_fer": 5.25047619047619,
+        "gdpp": 798.4285714285714
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 19.9,
+        "exports": 40.77973333333333,
+        "health": 6.3556,
+        "imports": 47.05066666666667,
+        "income": 12969.6,
+        "inflation": 6.252453333333333,
+        "life_expec": 73.57199999999999,
+        "total_fer": 2.1242666666666667,
+        "gdpp": 7440.32
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 4.147058823529412,
+        "exports": 35.66470588235294,
+        "health": 10.318235294117647,
+        "imports": 34.588235294117645,
+        "income": 37794.117647058825,
+        "inflation": 1.3403529411764707,
+        "life_expec": 80.98823529411764,
+        "total_fer": 1.7241176470588235,
+        "gdpp": 41770.58823529412
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/18be1a98-495e-4a4d-a88d-2f6debd0b2eb/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "6ebe5958-e07e-4751-80b9-85d0346270d2",
+    "experiment_name": "Eksperimen Agglomerative Clustering",
+    "created_at": "2026-05-26T18:05:28",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
     },
     "preprocessing": {
       "id": "ordinal_standard",
-      "name": "Ordinal Encoding + StandardScaler",
-      "description": "GameDifficulty diubah dengan ordinal encoding (Easy=0, Medium=1, Hard=2), lalu seluruh fitur numerik discales menggunakan StandardScaler.",
+      "name": "Ordinal + One-Hot + StandardScaler",
+      "description": "GameDifficulty menggunakan ordinal encoding (Easy=0, Medium=1, Hard=2). Kolom kategori lain otomatis One-Hot Encoding. Seluruh fitur numerik akhir discales menggunakan StandardScaler.",
       "info": {
-        "used_features": [
-          "Age",
-          "PlayTimeHours",
-          "InGamePurchases",
-          "GameDifficulty",
-          "SessionsPerWeek",
-          "AvgSessionDurationMinutes",
-          "PlayerLevel",
-          "AchievementsUnlocked"
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
         ],
-        "ordinal_encoding": {
-          "GameDifficulty": {
-            "Easy": 0,
-            "Medium": 1,
-            "Hard": 2,
-            "reason": "GameDifficulty memiliki urutan alami: Easy < Medium < Hard."
-          }
-        },
+        "numeric_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_features": [],
+        "one_hot_features": [],
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_encoding": {},
+        "one_hot_encoding": {},
         "missing_value_strategy": {
           "numeric": "median",
           "categorical": "mode"
         },
         "missing_values_before": {
-          "Age": 0,
-          "PlayTimeHours": 0,
-          "InGamePurchases": 0,
-          "GameDifficulty": 0,
-          "SessionsPerWeek": 0,
-          "AvgSessionDurationMinutes": 0,
-          "PlayerLevel": 0,
-          "AchievementsUnlocked": 0
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
         },
         "missing_values_after": {
-          "Age": 0,
-          "PlayTimeHours": 0,
-          "InGamePurchases": 0,
-          "GameDifficulty": 0,
-          "SessionsPerWeek": 0,
-          "AvgSessionDurationMinutes": 0,
-          "PlayerLevel": 0,
-          "AchievementsUnlocked": 0
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
         },
+        "output_feature_count": 9,
         "scaler": "StandardScaler",
         "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
       }
@@ -68,103 +262,1474 @@
       "linkage": "ward",
       "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
     },
-    "features": [
-      "Age",
-      "PlayTimeHours",
-      "InGamePurchases",
-      "GameDifficulty",
-      "SessionsPerWeek",
-      "AvgSessionDurationMinutes",
-      "PlayerLevel",
-      "AchievementsUnlocked"
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
     ],
     "evaluation": {
       "n_clusters_detected": 4,
       "noise_count": 0,
-      "silhouette_score": 0.06720774091129836,
-      "davies_bouldin_index": 2.77782878948324,
-      "calinski_harabasz_score": 89.08672258446938,
+      "silhouette_score": 0.24811891847692066,
+      "davies_bouldin_index": 1.0801256392082403,
+      "calinski_harabasz_score": 48.2625926459045,
       "evaluation_note": ""
     },
     "cluster_counts": {
-      "0": 459,
-      "1": 183,
-      "2": 154,
-      "3": 204
+      "0": 106,
+      "1": 31,
+      "2": 27,
+      "3": 3
     },
     "cluster_summary": [
       {
         "Cluster": 0,
-        "Age": 34.932461873638346,
-        "PlayTimeHours": 12.818111333790373,
-        "InGamePurchases": 0.0,
-        "GameDifficulty": 0.5947712418300654,
-        "SessionsPerWeek": 11.352941176470589,
-        "AvgSessionDurationMinutes": 94.77342047930283,
-        "PlayerLevel": 42.12418300653595,
-        "AchievementsUnlocked": 23.85185185185185
+        "child_mort": 31.617924528301888,
+        "exports": 39.99036792452831,
+        "health": 6.353679245283019,
+        "imports": 48.08552735849056,
+        "income": 11341.88679245283,
+        "inflation": 9.120603773584905,
+        "life_expec": 70.92169811320754,
+        "total_fer": 2.654622641509434,
+        "gdpp": 6407.367924528302
       },
       {
         "Cluster": 1,
-        "Age": 33.09289617486339,
-        "PlayTimeHours": 8.807073229482391,
-        "InGamePurchases": 0.0,
-        "GameDifficulty": 1.349726775956284,
-        "SessionsPerWeek": 6.819672131147541,
-        "AvgSessionDurationMinutes": 115.81967213114754,
-        "PlayerLevel": 54.7103825136612,
-        "AchievementsUnlocked": 19.437158469945356
+        "child_mort": 6.138709677419355,
+        "exports": 47.13870967741936,
+        "health": 8.666451612903225,
+        "imports": 38.4741935483871,
+        "income": 45996.77419354839,
+        "inflation": 4.2749354838709674,
+        "life_expec": 79.84193548387097,
+        "total_fer": 1.937741935483871,
+        "gdpp": 41777.41935483871
       },
       {
         "Cluster": 2,
-        "Age": 22.506493506493506,
-        "PlayTimeHours": 12.519227600359015,
-        "InGamePurchases": 0.0,
-        "GameDifficulty": 0.22077922077922077,
-        "SessionsPerWeek": 8.006493506493506,
-        "AvgSessionDurationMinutes": 79.38311688311688,
-        "PlayerLevel": 61.214285714285715,
-        "AchievementsUnlocked": 31.22077922077922
+        "child_mort": 105.07037037037037,
+        "exports": 23.589629629629627,
+        "health": 6.507037037037037,
+        "imports": 39.662962962962965,
+        "income": 1589.7407407407406,
+        "inflation": 7.142777777777777,
+        "life_expec": 57.24814814814815,
+        "total_fer": 5.433703703703704,
+        "gdpp": 667.8888888888889
       },
       {
         "Cluster": 3,
-        "Age": 31.416666666666668,
-        "PlayTimeHours": 11.92024430628414,
-        "InGamePurchases": 1.0,
-        "GameDifficulty": 0.7058823529411765,
-        "SessionsPerWeek": 9.156862745098039,
-        "AvgSessionDurationMinutes": 94.5343137254902,
-        "PlayerLevel": 51.35294117647059,
-        "AchievementsUnlocked": 24.03921568627451
+        "child_mort": 4.133333333333333,
+        "exports": 176.0,
+        "health": 6.793333333333333,
+        "imports": 156.66666666666666,
+        "income": 64033.333333333336,
+        "inflation": 2.468,
+        "life_expec": 81.43333333333334,
+        "total_fer": 1.38,
+        "gdpp": 57566.666666666664
       }
     ],
     "files": {
-      "result_csv": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/hasil_clustering.csv",
-      "summary_csv": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/ringkasan_cluster.csv",
-      "counts_csv": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/jumlah_cluster.csv",
-      "scaled_csv": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/data_scaled.csv"
+      "result_csv": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/data_scaled.csv"
     },
     "images": {
-      "dendrogram": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/images/01_dendrogram.png",
-      "cluster_counts": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/images/02_cluster_counts.png",
-      "feature_means": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/images/03_feature_means.png",
-      "pca_2d": "/files/experiments/e175978a-60f9-46ac-97c8-14bfa690c175/images/04_pca_2d.png"
+      "dendrogram": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/6ebe5958-e07e-4751-80b9-85d0346270d2/images/04_pca_2d.png"
     }
   },
   {
-    "id": "c327e938-6317-4192-83ea-d3e56c6d4206",
+    "id": "7108575f-4d72-41b0-8152-0e9fd13ad1fb",
     "experiment_name": "Eksperimen Agglomerative Clustering",
-    "created_at": "2026-05-25T20:56:42",
+    "created_at": "2026-05-26T18:06:37",
     "dataset": {
-      "id": "dbe1338a-c47f-44bf-8c51-5806b34f6a8a",
-      "filename": "online_gaming_behavior_sample_1000.csv",
-      "rows": 1000,
-      "columns": 13
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
     },
     "preprocessing": {
       "id": "ordinal_standard",
       "name": "Ordinal + One-Hot + StandardScaler",
       "description": "GameDifficulty menggunakan ordinal encoding (Easy=0, Medium=1, Hard=2). Kolom kategori lain otomatis One-Hot Encoding. Seluruh fitur numerik akhir discales menggunakan StandardScaler.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "numeric_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_features": [],
+        "one_hot_features": [],
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_encoding": {},
+        "one_hot_encoding": {},
+        "missing_value_strategy": {
+          "numeric": "median",
+          "categorical": "mode"
+        },
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_feature_count": 9,
+        "scaler": "StandardScaler",
+        "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
+      }
+    },
+    "model": {
+      "model_id": "agglomerative",
+      "model_name": "Agglomerative Hierarchical Clustering",
+      "n_clusters": 2,
+      "metric": "euclidean",
+      "linkage": "ward",
+      "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 2,
+      "noise_count": 0,
+      "silhouette_score": 0.3153134331018189,
+      "davies_bouldin_index": 1.3272579599227023,
+      "calinski_harabasz_score": 51.883430293657675,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 133,
+      "1": 34
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 46.529323308270676,
+        "exports": 36.66089473684211,
+        "health": 6.384812030075188,
+        "imports": 46.37568345864662,
+        "income": 9362.127819548872,
+        "inflation": 8.719090225563908,
+        "life_expec": 68.14586466165413,
+        "total_fer": 3.218796992481203,
+        "gdpp": 5242.210526315789
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 5.961764705882352,
+        "exports": 58.508823529411764,
+        "health": 8.501176470588236,
+        "imports": 48.90294117647059,
+        "income": 47588.23529411765,
+        "inflation": 4.1155,
+        "life_expec": 79.98235294117647,
+        "total_fer": 1.8885294117647058,
+        "gdpp": 43170.58823529412
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/7108575f-4d72-41b0-8152-0e9fd13ad1fb/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "f9d9f8f4-7aff-46c7-921b-b7d0c85e6206",
+    "experiment_name": "Eksperimen Agglomerative Clustering",
+    "created_at": "2026-05-26T18:06:53",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "ordinal_standard",
+      "name": "Ordinal + One-Hot + StandardScaler",
+      "description": "GameDifficulty menggunakan ordinal encoding (Easy=0, Medium=1, Hard=2). Kolom kategori lain otomatis One-Hot Encoding. Seluruh fitur numerik akhir discales menggunakan StandardScaler.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "numeric_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_features": [],
+        "one_hot_features": [],
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_encoding": {},
+        "one_hot_encoding": {},
+        "missing_value_strategy": {
+          "numeric": "median",
+          "categorical": "mode"
+        },
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_feature_count": 9,
+        "scaler": "StandardScaler",
+        "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
+      }
+    },
+    "model": {
+      "model_id": "agglomerative",
+      "model_name": "Agglomerative Hierarchical Clustering",
+      "n_clusters": 3,
+      "metric": "euclidean",
+      "linkage": "ward",
+      "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 0,
+      "silhouette_score": 0.24563001303300652,
+      "davies_bouldin_index": 1.299788958694555,
+      "calinski_harabasz_score": 50.71615124994364,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 34,
+      "1": 106,
+      "2": 27
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 5.961764705882352,
+        "exports": 58.508823529411764,
+        "health": 8.501176470588236,
+        "imports": 48.90294117647059,
+        "income": 47588.23529411765,
+        "inflation": 4.1155,
+        "life_expec": 79.98235294117647,
+        "total_fer": 1.8885294117647058,
+        "gdpp": 43170.58823529412
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 31.617924528301888,
+        "exports": 39.99036792452831,
+        "health": 6.353679245283019,
+        "imports": 48.08552735849056,
+        "income": 11341.88679245283,
+        "inflation": 9.120603773584905,
+        "life_expec": 70.92169811320754,
+        "total_fer": 2.654622641509434,
+        "gdpp": 6407.367924528302
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 105.07037037037037,
+        "exports": 23.589629629629627,
+        "health": 6.507037037037037,
+        "imports": 39.662962962962965,
+        "income": 1589.7407407407406,
+        "inflation": 7.142777777777777,
+        "life_expec": 57.24814814814815,
+        "total_fer": 5.433703703703704,
+        "gdpp": 667.8888888888889
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/f9d9f8f4-7aff-46c7-921b-b7d0c85e6206/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "4ba03bc8-da73-464d-9f13-8e3eadc9ae01",
+    "experiment_name": "Eksperimen Agglomerative Clustering",
+    "created_at": "2026-05-26T18:07:07",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "ordinal_standard",
+      "name": "Ordinal + One-Hot + StandardScaler",
+      "description": "GameDifficulty menggunakan ordinal encoding (Easy=0, Medium=1, Hard=2). Kolom kategori lain otomatis One-Hot Encoding. Seluruh fitur numerik akhir discales menggunakan StandardScaler.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "numeric_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_features": [],
+        "one_hot_features": [],
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_encoding": {},
+        "one_hot_encoding": {},
+        "missing_value_strategy": {
+          "numeric": "median",
+          "categorical": "mode"
+        },
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_feature_count": 9,
+        "scaler": "StandardScaler",
+        "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
+      }
+    },
+    "model": {
+      "model_id": "agglomerative",
+      "model_name": "Agglomerative Hierarchical Clustering",
+      "n_clusters": 4,
+      "metric": "euclidean",
+      "linkage": "ward",
+      "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 4,
+      "noise_count": 0,
+      "silhouette_score": 0.24811891847692066,
+      "davies_bouldin_index": 1.0801256392082403,
+      "calinski_harabasz_score": 48.2625926459045,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 106,
+      "1": 31,
+      "2": 27,
+      "3": 3
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 31.617924528301888,
+        "exports": 39.99036792452831,
+        "health": 6.353679245283019,
+        "imports": 48.08552735849056,
+        "income": 11341.88679245283,
+        "inflation": 9.120603773584905,
+        "life_expec": 70.92169811320754,
+        "total_fer": 2.654622641509434,
+        "gdpp": 6407.367924528302
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 6.138709677419355,
+        "exports": 47.13870967741936,
+        "health": 8.666451612903225,
+        "imports": 38.4741935483871,
+        "income": 45996.77419354839,
+        "inflation": 4.2749354838709674,
+        "life_expec": 79.84193548387097,
+        "total_fer": 1.937741935483871,
+        "gdpp": 41777.41935483871
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 105.07037037037037,
+        "exports": 23.589629629629627,
+        "health": 6.507037037037037,
+        "imports": 39.662962962962965,
+        "income": 1589.7407407407406,
+        "inflation": 7.142777777777777,
+        "life_expec": 57.24814814814815,
+        "total_fer": 5.433703703703704,
+        "gdpp": 667.8888888888889
+      },
+      {
+        "Cluster": 3,
+        "child_mort": 4.133333333333333,
+        "exports": 176.0,
+        "health": 6.793333333333333,
+        "imports": 156.66666666666666,
+        "income": 64033.333333333336,
+        "inflation": 2.468,
+        "life_expec": 81.43333333333334,
+        "total_fer": 1.38,
+        "gdpp": 57566.666666666664
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/4ba03bc8-da73-464d-9f13-8e3eadc9ae01/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "d13b40e4-f6a8-450b-8ec0-5c950c4dc741",
+    "experiment_name": "Eksperimen Agglomerative Clustering",
+    "created_at": "2026-05-26T18:07:17",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "ordinal_standard",
+      "name": "Ordinal + One-Hot + StandardScaler",
+      "description": "GameDifficulty menggunakan ordinal encoding (Easy=0, Medium=1, Hard=2). Kolom kategori lain otomatis One-Hot Encoding. Seluruh fitur numerik akhir discales menggunakan StandardScaler.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "numeric_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_features": [],
+        "one_hot_features": [],
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_encoding": {},
+        "one_hot_encoding": {},
+        "missing_value_strategy": {
+          "numeric": "median",
+          "categorical": "mode"
+        },
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_feature_count": 9,
+        "scaler": "StandardScaler",
+        "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
+      }
+    },
+    "model": {
+      "model_id": "agglomerative",
+      "model_name": "Agglomerative Hierarchical Clustering",
+      "n_clusters": 5,
+      "metric": "euclidean",
+      "linkage": "ward",
+      "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 5,
+      "noise_count": 0,
+      "silhouette_score": 0.2193301598939687,
+      "davies_bouldin_index": 1.3008007000836332,
+      "calinski_harabasz_score": 49.14838291459103,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 43,
+      "1": 31,
+      "2": 27,
+      "3": 3,
+      "4": 63
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 46.146511627906975,
+        "exports": 30.82741860465116,
+        "health": 5.176976744186046,
+        "imports": 30.72943953488372,
+        "income": 9615.581395348838,
+        "inflation": 16.474883720930233,
+        "life_expec": 69.69534883720931,
+        "total_fer": 3.239302325581395,
+        "gdpp": 4792.279069767442
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 6.138709677419355,
+        "exports": 47.13870967741936,
+        "health": 8.666451612903225,
+        "imports": 38.4741935483871,
+        "income": 45996.77419354839,
+        "inflation": 4.2749354838709674,
+        "life_expec": 79.84193548387097,
+        "total_fer": 1.937741935483871,
+        "gdpp": 41777.41935483871
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 105.07037037037037,
+        "exports": 23.589629629629627,
+        "health": 6.507037037037037,
+        "imports": 39.662962962962965,
+        "income": 1589.7407407407406,
+        "inflation": 7.142777777777777,
+        "life_expec": 57.24814814814815,
+        "total_fer": 5.433703703703704,
+        "gdpp": 667.8888888888889
+      },
+      {
+        "Cluster": 3,
+        "child_mort": 4.133333333333333,
+        "exports": 176.0,
+        "health": 6.793333333333333,
+        "imports": 156.66666666666666,
+        "income": 64033.333333333336,
+        "inflation": 2.468,
+        "life_expec": 81.43333333333334,
+        "total_fer": 1.38,
+        "gdpp": 57566.666666666664
+      },
+      {
+        "Cluster": 4,
+        "child_mort": 21.701587301587303,
+        "exports": 46.24444444444445,
+        "health": 7.156825396825397,
+        "imports": 59.93174603174603,
+        "income": 12520.15873015873,
+        "inflation": 4.101015873015872,
+        "life_expec": 71.75873015873016,
+        "total_fer": 2.2555555555555555,
+        "gdpp": 7509.730158730159
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/d13b40e4-f6a8-450b-8ec0-5c950c4dc741/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae",
+    "experiment_name": "Eksperimen Agglomerative Clustering",
+    "created_at": "2026-05-26T18:07:28",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "ordinal_standard",
+      "name": "Ordinal + One-Hot + StandardScaler",
+      "description": "GameDifficulty menggunakan ordinal encoding (Easy=0, Medium=1, Hard=2). Kolom kategori lain otomatis One-Hot Encoding. Seluruh fitur numerik akhir discales menggunakan StandardScaler.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "numeric_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_features": [],
+        "one_hot_features": [],
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_encoding": {},
+        "one_hot_encoding": {},
+        "missing_value_strategy": {
+          "numeric": "median",
+          "categorical": "mode"
+        },
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_feature_count": 9,
+        "scaler": "StandardScaler",
+        "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
+      }
+    },
+    "model": {
+      "model_id": "agglomerative",
+      "model_name": "Agglomerative Hierarchical Clustering",
+      "n_clusters": 6,
+      "metric": "euclidean",
+      "linkage": "ward",
+      "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 6,
+      "noise_count": 0,
+      "silhouette_score": 0.217674980548791,
+      "davies_bouldin_index": 1.1127848564262155,
+      "calinski_harabasz_score": 48.5462699511445,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 31,
+      "1": 63,
+      "2": 27,
+      "3": 3,
+      "4": 42,
+      "5": 1
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 6.138709677419355,
+        "exports": 47.13870967741936,
+        "health": 8.666451612903225,
+        "imports": 38.4741935483871,
+        "income": 45996.77419354839,
+        "inflation": 4.2749354838709674,
+        "life_expec": 79.84193548387097,
+        "total_fer": 1.937741935483871,
+        "gdpp": 41777.41935483871
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 21.701587301587303,
+        "exports": 46.24444444444445,
+        "health": 7.156825396825397,
+        "imports": 59.93174603174603,
+        "income": 12520.15873015873,
+        "inflation": 4.101015873015872,
+        "life_expec": 71.75873015873016,
+        "total_fer": 2.2555555555555555,
+        "gdpp": 7509.730158730159
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 105.07037037037037,
+        "exports": 23.589629629629627,
+        "health": 6.507037037037037,
+        "imports": 39.662962962962965,
+        "income": 1589.7407407407406,
+        "inflation": 7.142777777777777,
+        "life_expec": 57.24814814814815,
+        "total_fer": 5.433703703703704,
+        "gdpp": 667.8888888888889
+      },
+      {
+        "Cluster": 3,
+        "child_mort": 4.133333333333333,
+        "exports": 176.0,
+        "health": 6.793333333333333,
+        "imports": 156.66666666666666,
+        "income": 64033.333333333336,
+        "inflation": 2.468,
+        "life_expec": 81.43333333333334,
+        "total_fer": 1.38,
+        "gdpp": 57566.666666666664
+      },
+      {
+        "Cluster": 4,
+        "child_mort": 44.15,
+        "exports": 30.95902380952381,
+        "health": 5.179523809523809,
+        "imports": 31.04680714285714,
+        "income": 9721.904761904761,
+        "inflation": 14.39095238095238,
+        "life_expec": 69.91428571428571,
+        "total_fer": 3.177380952380952,
+        "gdpp": 4850.9047619047615
+      },
+      {
+        "Cluster": 5,
+        "child_mort": 130.0,
+        "exports": 25.3,
+        "health": 5.07,
+        "imports": 17.4,
+        "income": 5150.0,
+        "inflation": 104.0,
+        "life_expec": 60.5,
+        "total_fer": 5.84,
+        "gdpp": 2330.0
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/dbd6c8fe-7687-4ebd-8ce9-8f5a6336e2ae/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "d712457a-2e91-49f3-af4a-5bf2707b28d0",
+    "experiment_name": "Eksperimen Agglomerative Clustering",
+    "created_at": "2026-05-26T18:07:52",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "ordinal_standard",
+      "name": "Ordinal + One-Hot + StandardScaler",
+      "description": "GameDifficulty menggunakan ordinal encoding (Easy=0, Medium=1, Hard=2). Kolom kategori lain otomatis One-Hot Encoding. Seluruh fitur numerik akhir discales menggunakan StandardScaler.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "numeric_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_features": [],
+        "one_hot_features": [],
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "ordinal_encoding": {},
+        "one_hot_encoding": {},
+        "missing_value_strategy": {
+          "numeric": "median",
+          "categorical": "mode"
+        },
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_feature_count": 9,
+        "scaler": "StandardScaler",
+        "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
+      }
+    },
+    "model": {
+      "model_id": "agglomerative",
+      "model_name": "Agglomerative Hierarchical Clustering",
+      "n_clusters": 20,
+      "metric": "euclidean",
+      "linkage": "ward",
+      "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 20,
+      "noise_count": 0,
+      "silhouette_score": 0.1964435487652827,
+      "davies_bouldin_index": 1.0099412396840308,
+      "calinski_harabasz_score": 39.784268160107835,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 18,
+      "1": 12,
+      "2": 5,
+      "3": 2,
+      "4": 17,
+      "5": 19,
+      "6": 7,
+      "7": 25,
+      "8": 10,
+      "9": 12,
+      "10": 15,
+      "11": 1,
+      "12": 4,
+      "13": 4,
+      "14": 1,
+      "15": 1,
+      "16": 4,
+      "17": 1,
+      "18": 7,
+      "19": 2
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 4.327777777777778,
+        "exports": 32.31666666666667,
+        "health": 10.502222222222223,
+        "imports": 31.83888888888889,
+        "income": 37555.555555555555,
+        "inflation": 1.3848888888888888,
+        "life_expec": 80.9,
+        "total_fer": 1.8044444444444443,
+        "gdpp": 41044.444444444445
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 9.366666666666665,
+        "exports": 38.233333333333334,
+        "health": 8.940833333333332,
+        "imports": 50.375,
+        "income": 17038.333333333332,
+        "inflation": 3.5565833333333337,
+        "life_expec": 76.15833333333333,
+        "total_fer": 1.57,
+        "gdpp": 12707.5
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 4.18,
+        "exports": 71.02000000000001,
+        "health": 10.553999999999998,
+        "imports": 61.32000000000001,
+        "income": 50020.0,
+        "inflation": 1.155,
+        "life_expec": 80.86,
+        "total_fer": 1.834,
+        "gdpp": 61160.0
+      },
+      {
+        "Cluster": 3,
+        "child_mort": 4.8,
+        "exports": 176.5,
+        "health": 6.305,
+        "imports": 164.0,
+        "income": 50200.0,
+        "inflation": 1.8920000000000001,
+        "life_expec": 81.5,
+        "total_fer": 1.255,
+        "gdpp": 33850.0
+      },
+      {
+        "Cluster": 4,
+        "child_mort": 20.28235294117647,
+        "exports": 25.91176470588235,
+        "health": 6.101176470588236,
+        "imports": 25.129411764705882,
+        "income": 13867.058823529413,
+        "inflation": 11.091176470588236,
+        "life_expec": 74.59411764705882,
+        "total_fer": 2.2682352941176473,
+        "gdpp": 7202.941176470588
+      },
+      {
+        "Cluster": 5,
+        "child_mort": 100.55263157894737,
+        "exports": 27.510526315789477,
+        "health": 5.355263157894737,
+        "imports": 40.22105263157895,
+        "income": 1690.4736842105262,
+        "inflation": 6.603947368421053,
+        "life_expec": 58.41052631578947,
+        "total_fer": 5.501052631578947,
+        "gdpp": 732.0
+      },
+      {
+        "Cluster": 6,
+        "child_mort": 11.785714285714286,
+        "exports": 66.02857142857144,
+        "health": 3.577142857142857,
+        "imports": 41.31428571428571,
+        "income": 53542.857142857145,
+        "inflation": 13.54857142857143,
+        "life_expec": 76.44285714285715,
+        "total_fer": 2.335714285714286,
+        "gdpp": 25742.85714285714
+      },
+      {
+        "Cluster": 7,
+        "child_mort": 17.664,
+        "exports": 39.616,
+        "health": 6.026,
+        "imports": 52.356,
+        "income": 11162.4,
+        "inflation": 4.56748,
+        "life_expec": 73.27199999999999,
+        "total_fer": 2.22,
+        "gdpp": 5608.8
+      },
+      {
+        "Cluster": 8,
+        "child_mort": 39.790000000000006,
+        "exports": 47.33,
+        "health": 6.5120000000000005,
+        "imports": 62.82000000000001,
+        "income": 6341.0,
+        "inflation": 5.733,
+        "life_expec": 63.21999999999999,
+        "total_fer": 3.0490000000000004,
+        "gdpp": 3361.6
+      },
+      {
+        "Cluster": 9,
+        "child_mort": 10.299999999999999,
+        "exports": 74.63333333333334,
+        "health": 6.618333333333333,
+        "imports": 73.3,
+        "income": 19474.166666666668,
+        "inflation": 2.4356666666666666,
+        "life_expec": 75.79166666666667,
+        "total_fer": 1.8041666666666665,
+        "gdpp": 11745.0
+      },
+      {
+        "Cluster": 10,
+        "child_mort": 56.166666666666664,
+        "exports": 27.291933333333336,
+        "health": 4.016,
+        "imports": 31.417726666666667,
+        "income": 5190.666666666667,
+        "inflation": 10.504666666666667,
+        "life_expec": 67.0,
+        "total_fer": 3.2093333333333334,
+        "gdpp": 1978.5333333333333
+      },
+      {
+        "Cluster": 11,
+        "child_mort": 130.0,
+        "exports": 25.3,
+        "health": 5.07,
+        "imports": 17.4,
+        "income": 5150.0,
+        "inflation": 104.0,
+        "life_expec": 60.5,
+        "total_fer": 5.84,
+        "gdpp": 2330.0
+      },
+      {
+        "Cluster": 12,
+        "child_mort": 72.925,
+        "exports": 23.825,
+        "health": 12.1,
+        "imports": 88.625,
+        "income": 2037.5,
+        "inflation": 3.735,
+        "life_expec": 58.35,
+        "total_fer": 3.905,
+        "gdpp": 1461.75
+      },
+      {
+        "Cluster": 13,
+        "child_mort": 97.825,
+        "exports": 70.975,
+        "health": 3.5500000000000003,
+        "imports": 54.425,
+        "income": 12027.5,
+        "inflation": 21.724999999999998,
+        "life_expec": 62.4,
+        "total_fer": 5.325,
+        "gdpp": 6142.5
+      },
+      {
+        "Cluster": 14,
+        "child_mort": 9.0,
+        "exports": 62.3,
+        "health": 1.81,
+        "imports": 23.8,
+        "income": 125000.0,
+        "inflation": 6.98,
+        "life_expec": 79.5,
+        "total_fer": 2.07,
+        "gdpp": 70300.0
+      },
+      {
+        "Cluster": 15,
+        "child_mort": 208.0,
+        "exports": 15.3,
+        "health": 6.91,
+        "imports": 64.7,
+        "income": 1500.0,
+        "inflation": 5.45,
+        "life_expec": 32.1,
+        "total_fer": 3.33,
+        "gdpp": 662.0
+      },
+      {
+        "Cluster": 16,
+        "child_mort": 58.125,
+        "exports": 22.825,
+        "health": 7.2575,
+        "imports": 28.375,
+        "income": 5600.0,
+        "inflation": 21.575000000000003,
+        "life_expec": 68.025,
+        "total_fer": 5.085,
+        "gdpp": 2722.5
+      },
+      {
+        "Cluster": 17,
+        "child_mort": 2.8,
+        "exports": 175.0,
+        "health": 7.77,
+        "imports": 142.0,
+        "income": 91700.0,
+        "inflation": 3.62,
+        "life_expec": 81.3,
+        "total_fer": 1.63,
+        "gdpp": 105000.0
+      },
+      {
+        "Cluster": 18,
+        "child_mort": 102.62857142857142,
+        "exports": 14.131428571428572,
+        "health": 9.575714285714286,
+        "imports": 34.57142857142857,
+        "income": 1329.142857142857,
+        "inflation": 8.847142857142858,
+        "life_expec": 57.68571428571429,
+        "total_fer": 5.551428571428572,
+        "gdpp": 494.7142857142857
+      },
+      {
+        "Cluster": 19,
+        "child_mort": 21.6,
+        "exports": 37.6,
+        "health": 5.175000000000001,
+        "imports": 37.150000000000006,
+        "income": 12105.0,
+        "inflation": 42.55,
+        "life_expec": 70.80000000000001,
+        "total_fer": 2.555,
+        "gdpp": 8075.0
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/d712457a-2e91-49f3-af4a-5bf2707b28d0/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "f9532ca0-1a91-46ca-9995-d65deea17258",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:12:18",
+    "dataset": {
+      "id": "940cf32b-74f7-4f9d-82aa-7af7765936dc",
+      "filename": "dbe1338a-c47f-44bf-8c51-5806b34f6a8a_online_gaming_behavior_sample_1000.csv",
+      "rows": 1000,
+      "columns": 13
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
       "info": {
         "input_features": [
           "Age",
@@ -176,42 +1741,6 @@
           "PlayerLevel",
           "AchievementsUnlocked"
         ],
-        "numeric_features": [
-          "Age",
-          "PlayTimeHours",
-          "InGamePurchases",
-          "SessionsPerWeek",
-          "AvgSessionDurationMinutes",
-          "PlayerLevel",
-          "AchievementsUnlocked"
-        ],
-        "ordinal_features": [
-          "GameDifficulty"
-        ],
-        "one_hot_features": [],
-        "output_features": [
-          "Age",
-          "PlayTimeHours",
-          "InGamePurchases",
-          "GameDifficulty",
-          "SessionsPerWeek",
-          "AvgSessionDurationMinutes",
-          "PlayerLevel",
-          "AchievementsUnlocked"
-        ],
-        "ordinal_encoding": {
-          "GameDifficulty": {
-            "Easy": 0,
-            "Medium": 1,
-            "Hard": 2,
-            "reason": "GameDifficulty memiliki urutan alami: Easy < Medium < Hard."
-          }
-        },
-        "one_hot_encoding": {},
-        "missing_value_strategy": {
-          "numeric": "median",
-          "categorical": "mode"
-        },
         "missing_values_before": {
           "Age": 0,
           "PlayTimeHours": 0,
@@ -222,6 +1751,7 @@
           "PlayerLevel": 0,
           "AchievementsUnlocked": 0
         },
+        "duplicates_dropped": 0,
         "missing_values_after": {
           "Age": 0,
           "PlayTimeHours": 0,
@@ -232,18 +1762,27 @@
           "PlayerLevel": 0,
           "AchievementsUnlocked": 0
         },
+        "output_features": [
+          "Age",
+          "PlayTimeHours",
+          "InGamePurchases",
+          "GameDifficulty",
+          "SessionsPerWeek",
+          "AvgSessionDurationMinutes",
+          "PlayerLevel",
+          "AchievementsUnlocked"
+        ],
         "output_feature_count": 8,
-        "scaler": "StandardScaler",
-        "scaler_reason": "StandardScaler digunakan karena clustering berbasis jarak dan fitur memiliki skala nilai yang berbeda."
+        "scaler": "MinMaxScaler"
       }
     },
     "model": {
-      "model_id": "agglomerative",
-      "model_name": "Agglomerative Hierarchical Clustering",
-      "n_clusters": 4,
-      "metric": "euclidean",
-      "linkage": "ward",
-      "note": "Jika linkage='ward', metric otomatis memakai Euclidean."
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.25,
+      "min_samples": 5,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.25."
     },
     "selected_input_features": [
       "Age",
@@ -266,77 +1805,1585 @@
       "AchievementsUnlocked"
     ],
     "evaluation": {
-      "n_clusters_detected": 4,
-      "noise_count": 0,
-      "silhouette_score": 0.06720774091129836,
-      "davies_bouldin_index": 2.77782878948324,
-      "calinski_harabasz_score": 89.08672258446938,
+      "n_clusters_detected": 2,
+      "noise_count": 988,
+      "silhouette_score": 0.6540077097840026,
+      "davies_bouldin_index": 0.4532456766348482,
+      "calinski_harabasz_score": 41.165376529270524,
       "evaluation_note": ""
     },
     "cluster_counts": {
-      "0": 459,
-      "1": 183,
-      "2": 154,
-      "3": 204
+      "-1": 988,
+      "0": 7,
+      "1": 5
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "Age": 31.866396761133604,
+        "PlayTimeHours": 11.806644650107941,
+        "InGamePurchases": 0.20647773279352227,
+        "GameDifficulty": 0.0,
+        "SessionsPerWeek": 9.555668016194332,
+        "AvgSessionDurationMinutes": 95.90789473684211,
+        "PlayerLevel": 49.36943319838057,
+        "AchievementsUnlocked": 24.12348178137652
+      },
+      {
+        "Cluster": 0,
+        "Age": 44.0,
+        "PlayTimeHours": 16.842529238335004,
+        "InGamePurchases": 0.0,
+        "GameDifficulty": 0.0,
+        "SessionsPerWeek": 13.714285714285714,
+        "AvgSessionDurationMinutes": 133.42857142857142,
+        "PlayerLevel": 56.285714285714285,
+        "AchievementsUnlocked": 39.857142857142854
+      },
+      {
+        "Cluster": 1,
+        "Age": 34.6,
+        "PlayTimeHours": 14.40715463346433,
+        "InGamePurchases": 0.0,
+        "GameDifficulty": 0.0,
+        "SessionsPerWeek": 4.6,
+        "AvgSessionDurationMinutes": 103.0,
+        "PlayerLevel": 15.8,
+        "AchievementsUnlocked": 20.8
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/f9532ca0-1a91-46ca-9995-d65deea17258/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "b9c9ae1b-0781-4b7d-b736-18499c84db37",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:17:06",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "missing_values_before": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "output_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "output_feature_count": 3,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.15,
+      "min_samples": 5,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.15."
+    },
+    "selected_input_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "processed_output_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 24,
+      "silhouette_score": 0.12466849793344874,
+      "davies_bouldin_index": 1.0735955259869834,
+      "calinski_harabasz_score": 30.412811646453513,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 24,
+      "0": 135,
+      "1": 5,
+      "2": 36
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "Age": 38.25,
+        "Annual Income (k$)": 69.25,
+        "Spending Score (1-100)": 30.541666666666668
+      },
+      {
+        "Cluster": 0,
+        "Age": 40.22222222222222,
+        "Annual Income (k$)": 54.111111111111114,
+        "Spending Score (1-100)": 46.56296296296296
+      },
+      {
+        "Cluster": 1,
+        "Age": 48.8,
+        "Annual Income (k$)": 30.6,
+        "Spending Score (1-100)": 10.8
+      },
+      {
+        "Cluster": 2,
+        "Age": 32.72222222222222,
+        "Annual Income (k$)": 83.11111111111111,
+        "Spending Score (1-100)": 82.41666666666667
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/b9c9ae1b-0781-4b7d-b736-18499c84db37/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "b678314e-a423-4be9-9711-e284a90d5724",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:19:09",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "missing_values_before": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "output_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "output_feature_count": 3,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.15,
+      "min_samples": 3,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.15."
+    },
+    "selected_input_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "processed_output_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 12,
+      "silhouette_score": 0.1986174374168738,
+      "davies_bouldin_index": 0.9552191994772873,
+      "calinski_harabasz_score": 35.02627004221953,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 12,
+      "0": 145,
+      "1": 39,
+      "2": 4
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "Age": 37.333333333333336,
+        "Annual Income (k$)": 65.58333333333333,
+        "Spending Score (1-100)": 32.5
+      },
+      {
+        "Cluster": 0,
+        "Age": 41.13103448275862,
+        "Annual Income (k$)": 52.724137931034484,
+        "Spending Score (1-100)": 44.241379310344826
+      },
+      {
+        "Cluster": 1,
+        "Age": 32.69230769230769,
+        "Annual Income (k$)": 86.53846153846153,
+        "Spending Score (1-100)": 82.12820512820512
+      },
+      {
+        "Cluster": 2,
+        "Age": 20.75,
+        "Annual Income (k$)": 76.25,
+        "Spending Score (1-100)": 8.0
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/b678314e-a423-4be9-9711-e284a90d5724/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "d124eee4-7597-4216-acac-3a08ed64c6d4",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:19:16",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "missing_values_before": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "output_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "output_feature_count": 3,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.2,
+      "min_samples": 2,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.2."
+    },
+    "selected_input_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "processed_output_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 2,
+      "noise_count": 3,
+      "silhouette_score": 0.16523553508449695,
+      "davies_bouldin_index": 0.698423278553975,
+      "calinski_harabasz_score": 3.8967604478218214,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 3,
+      "0": 195,
+      "1": 2
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "Age": 23.666666666666668,
+        "Annual Income (k$)": 56.0,
+        "Spending Score (1-100)": 21.0
+      },
+      {
+        "Cluster": 0,
+        "Age": 39.12307692307692,
+        "Annual Income (k$)": 61.03589743589744,
+        "Spending Score (1-100)": 50.15384615384615
+      },
+      {
+        "Cluster": 1,
+        "Age": 35.0,
+        "Annual Income (k$)": 21.0,
+        "Spending Score (1-100)": 98.5
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/d124eee4-7597-4216-acac-3a08ed64c6d4/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "d2cacb17-b306-4588-b18b-caa0e354f4e8",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:19:28",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "missing_values_before": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "Age": 0,
+          "Annual Income (k$)": 0,
+          "Spending Score (1-100)": 0
+        },
+        "output_features": [
+          "Age",
+          "Annual Income (k$)",
+          "Spending Score (1-100)"
+        ],
+        "output_feature_count": 3,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.15,
+      "min_samples": 6,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.15."
+    },
+    "selected_input_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "processed_output_features": [
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 43,
+      "silhouette_score": 0.24662574026649164,
+      "davies_bouldin_index": 1.0824403110599607,
+      "calinski_harabasz_score": 43.63295120226015,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 43,
+      "0": 106,
+      "1": 36,
+      "2": 15
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "Age": 39.7906976744186,
+        "Annual Income (k$)": 60.97674418604651,
+        "Spending Score (1-100)": 26.0
+      },
+      {
+        "Cluster": 0,
+        "Age": 39.58490566037736,
+        "Annual Income (k$)": 49.22641509433962,
+        "Spending Score (1-100)": 53.924528301886795
+      },
+      {
+        "Cluster": 1,
+        "Age": 32.72222222222222,
+        "Annual Income (k$)": 83.11111111111111,
+        "Spending Score (1-100)": 82.41666666666667
+      },
+      {
+        "Cluster": 2,
+        "Age": 45.666666666666664,
+        "Annual Income (k$)": 85.33333333333333,
+        "Spending Score (1-100)": 15.933333333333334
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/d2cacb17-b306-4588-b18b-caa0e354f4e8/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "7d119bbb-4376-42b5-a5dc-62244124fbdb",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:26:27",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "output_feature_count": 9,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.2,
+      "min_samples": 5,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.2."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 54,
+      "silhouette_score": 0.43490078088707324,
+      "davies_bouldin_index": 0.7261073027513744,
+      "calinski_harabasz_score": 118.32600561533397,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 54,
+      "0": 21,
+      "1": 75,
+      "2": 17
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "child_mort": 54.78703703703704,
+        "exports": 50.08016666666667,
+        "health": 6.828333333333334,
+        "imports": 54.328998148148145,
+        "income": 22339.722222222223,
+        "inflation": 11.734833333333334,
+        "life_expec": 67.3962962962963,
+        "total_fer": 3.581851851851852,
+        "gdpp": 16298.574074074075
+      },
+      {
+        "Cluster": 0,
+        "child_mort": 89.02857142857142,
+        "exports": 23.623333333333335,
+        "health": 5.5909523809523805,
+        "imports": 37.147619047619045,
+        "income": 1980.857142857143,
+        "inflation": 8.293571428571429,
+        "life_expec": 59.46190476190476,
+        "total_fer": 5.25047619047619,
+        "gdpp": 798.4285714285714
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 19.9,
+        "exports": 40.77973333333333,
+        "health": 6.3556,
+        "imports": 47.05066666666667,
+        "income": 12969.6,
+        "inflation": 6.252453333333333,
+        "life_expec": 73.57199999999999,
+        "total_fer": 2.1242666666666667,
+        "gdpp": 7440.32
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 4.147058823529412,
+        "exports": 35.66470588235294,
+        "health": 10.318235294117647,
+        "imports": 34.588235294117645,
+        "income": 37794.117647058825,
+        "inflation": 1.3403529411764707,
+        "life_expec": 80.98823529411764,
+        "total_fer": 1.7241176470588235,
+        "gdpp": 41770.58823529412
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/7d119bbb-4376-42b5-a5dc-62244124fbdb/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "bec94555-19e6-44e6-8ef9-8cf1504f81d5",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:31:39",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "output_feature_count": 9,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.2,
+      "min_samples": 5,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.2."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 54,
+      "silhouette_score": 0.43490078088707324,
+      "davies_bouldin_index": 0.7261073027513744,
+      "calinski_harabasz_score": 118.32600561533397,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 54,
+      "0": 21,
+      "1": 75,
+      "2": 17
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "child_mort": 54.78703703703704,
+        "exports": 50.08016666666667,
+        "health": 6.828333333333334,
+        "imports": 54.328998148148145,
+        "income": 22339.722222222223,
+        "inflation": 11.734833333333334,
+        "life_expec": 67.3962962962963,
+        "total_fer": 3.581851851851852,
+        "gdpp": 16298.574074074075
+      },
+      {
+        "Cluster": 0,
+        "child_mort": 89.02857142857142,
+        "exports": 23.623333333333335,
+        "health": 5.5909523809523805,
+        "imports": 37.147619047619045,
+        "income": 1980.857142857143,
+        "inflation": 8.293571428571429,
+        "life_expec": 59.46190476190476,
+        "total_fer": 5.25047619047619,
+        "gdpp": 798.4285714285714
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 19.9,
+        "exports": 40.77973333333333,
+        "health": 6.3556,
+        "imports": 47.05066666666667,
+        "income": 12969.6,
+        "inflation": 6.252453333333333,
+        "life_expec": 73.57199999999999,
+        "total_fer": 2.1242666666666667,
+        "gdpp": 7440.32
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 4.147058823529412,
+        "exports": 35.66470588235294,
+        "health": 10.318235294117647,
+        "imports": 34.588235294117645,
+        "income": 37794.117647058825,
+        "inflation": 1.3403529411764707,
+        "life_expec": 80.98823529411764,
+        "total_fer": 1.7241176470588235,
+        "gdpp": 41770.58823529412
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/bec94555-19e6-44e6-8ef9-8cf1504f81d5/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "749c50a9-1ef9-4e3b-af5f-9e08642cdc92",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:32:20",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)"
+        ],
+        "missing_values_before": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0
+        },
+        "duplicates_dropped": 4,
+        "missing_values_after": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0
+        },
+        "output_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)"
+        ],
+        "output_feature_count": 2,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.3,
+      "min_samples": 5,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.3."
+    },
+    "selected_input_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)"
+    ],
+    "processed_output_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 1,
+      "noise_count": 0,
+      "silhouette_score": null,
+      "davies_bouldin_index": null,
+      "calinski_harabasz_score": null,
+      "evaluation_note": "Evaluasi metrik tidak valid karena jumlah cluster (selain noise) kurang dari 2."
+    },
+    "cluster_counts": {
+      "0": 196
     },
     "cluster_summary": [
       {
         "Cluster": 0,
-        "Age": 34.932461873638346,
-        "PlayTimeHours": 12.818111333790373,
-        "InGamePurchases": 0.0,
-        "GameDifficulty": 0.5947712418300654,
-        "SessionsPerWeek": 11.352941176470589,
-        "AvgSessionDurationMinutes": 94.77342047930283,
-        "PlayerLevel": 42.12418300653595,
-        "AchievementsUnlocked": 23.85185185185185
-      },
-      {
-        "Cluster": 1,
-        "Age": 33.09289617486339,
-        "PlayTimeHours": 8.807073229482391,
-        "InGamePurchases": 0.0,
-        "GameDifficulty": 1.349726775956284,
-        "SessionsPerWeek": 6.819672131147541,
-        "AvgSessionDurationMinutes": 115.81967213114754,
-        "PlayerLevel": 54.7103825136612,
-        "AchievementsUnlocked": 19.437158469945356
-      },
-      {
-        "Cluster": 2,
-        "Age": 22.506493506493506,
-        "PlayTimeHours": 12.519227600359015,
-        "InGamePurchases": 0.0,
-        "GameDifficulty": 0.22077922077922077,
-        "SessionsPerWeek": 8.006493506493506,
-        "AvgSessionDurationMinutes": 79.38311688311688,
-        "PlayerLevel": 61.214285714285715,
-        "AchievementsUnlocked": 31.22077922077922
-      },
-      {
-        "Cluster": 3,
-        "Age": 31.416666666666668,
-        "PlayTimeHours": 11.92024430628414,
-        "InGamePurchases": 1.0,
-        "GameDifficulty": 0.7058823529411765,
-        "SessionsPerWeek": 9.156862745098039,
-        "AvgSessionDurationMinutes": 94.5343137254902,
-        "PlayerLevel": 51.35294117647059,
-        "AchievementsUnlocked": 24.03921568627451
+        "Spending Score (1-100)": 50.32142857142857,
+        "Annual Income (k$)": 60.58673469387755
       }
     ],
     "files": {
-      "result_csv": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/hasil_clustering.csv",
-      "summary_csv": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/ringkasan_cluster.csv",
-      "counts_csv": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/jumlah_cluster.csv",
-      "preprocessed_csv": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/data_preprocessing_numerik.csv",
-      "scaled_csv": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/data_scaled.csv"
+      "result_csv": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/data_scaled.csv"
     },
     "images": {
-      "dendrogram": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/images/01_dendrogram.png",
-      "cluster_counts": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/images/02_cluster_counts.png",
-      "feature_means": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/images/03_feature_means.png",
-      "pca_2d": "/files/experiments/c327e938-6317-4192-83ea-d3e56c6d4206/images/04_pca_2d.png"
+      "dendrogram": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/749c50a9-1ef9-4e3b-af5f-9e08642cdc92/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "6d4b0ff7-a65b-4f02-877d-84d0d0122f58",
+    "experiment_name": "Eksperimen DBSCAN Clustering",
+    "created_at": "2026-05-26T18:32:53",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_drop_minmax",
+      "name": "Mean Imputation + Drop Duplicates + MinMax",
+      "description": "Penanganan Missing Value menggunakan mean, Penanganan data duplikat dengan cara dihapus, dan normalisasi menggunakan MinMaxScaler. Cocok untuk Country Dataset.",
+      "info": {
+        "input_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)",
+          "Age"
+        ],
+        "missing_values_before": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0,
+          "Age": 0
+        },
+        "duplicates_dropped": 0,
+        "missing_values_after": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0,
+          "Age": 0
+        },
+        "output_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)",
+          "Age"
+        ],
+        "output_feature_count": 3,
+        "scaler": "MinMaxScaler"
+      }
+    },
+    "model": {
+      "model_id": "dbscan",
+      "model_name": "DBSCAN (Density-Based Spatial Clustering of Applications with Noise)",
+      "eps": "auto",
+      "resolved_eps": 0.15,
+      "min_samples": 5,
+      "note": "DBSCAN mendeteksi noise/outlier (label -1). Nilai epsilon final yang digunakan: 0.15."
+    },
+    "selected_input_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)",
+      "Age"
+    ],
+    "processed_output_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)",
+      "Age"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 3,
+      "noise_count": 24,
+      "silhouette_score": 0.12466849793344868,
+      "davies_bouldin_index": 1.0735955259869836,
+      "calinski_harabasz_score": 30.412811646453513,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "-1": 24,
+      "0": 135,
+      "1": 5,
+      "2": 36
+    },
+    "cluster_summary": [
+      {
+        "Cluster": -1,
+        "Spending Score (1-100)": 30.541666666666668,
+        "Annual Income (k$)": 69.25,
+        "Age": 38.25
+      },
+      {
+        "Cluster": 0,
+        "Spending Score (1-100)": 46.56296296296296,
+        "Annual Income (k$)": 54.111111111111114,
+        "Age": 40.22222222222222
+      },
+      {
+        "Cluster": 1,
+        "Spending Score (1-100)": 10.8,
+        "Annual Income (k$)": 30.6,
+        "Age": 48.8
+      },
+      {
+        "Cluster": 2,
+        "Spending Score (1-100)": 82.41666666666667,
+        "Annual Income (k$)": 83.11111111111111,
+        "Age": 32.72222222222222
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/6d4b0ff7-a65b-4f02-877d-84d0d0122f58/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "b0596851-24c6-43f1-8087-2354889eea63",
+    "experiment_name": "Eksperimen K-Means Clustering",
+    "created_at": "2026-05-26T18:41:19",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_zscore",
+      "name": "Mean Imputation + Z-Score",
+      "description": "Mengisi nilai yang kosong (missing values) menggunakan rata-rata (mean), kemudian menstandarkan fitur dengan menghilangkan nilai rata-rata (mean = 0) dan menskalakannya ke varians unit (Z-Score Normalization).",
+      "info": {
+        "input_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)"
+        ],
+        "missing_values_before": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0
+        },
+        "missing_values_after": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0
+        },
+        "output_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)"
+        ],
+        "scaler": "StandardScaler"
+      }
+    },
+    "model": {
+      "model_id": "kmeans",
+      "model_name": "K-Means Clustering",
+      "n_clusters": 5,
+      "init": "k-means++",
+      "random_state": 42,
+      "note": "Menggunakan k-means++ untuk inisialisasi centroid yang optimal."
+    },
+    "selected_input_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)"
+    ],
+    "processed_output_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 5,
+      "noise_count": 0,
+      "silhouette_score": 0.5546571631111091,
+      "davies_bouldin_index": 0.5722356162263351,
+      "calinski_harabasz_score": 248.64932001536357,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 81,
+      "1": 39,
+      "2": 22,
+      "3": 35,
+      "4": 23
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "Spending Score (1-100)": 49.51851851851852,
+        "Annual Income (k$)": 55.2962962962963
+      },
+      {
+        "Cluster": 1,
+        "Spending Score (1-100)": 82.12820512820512,
+        "Annual Income (k$)": 86.53846153846153
+      },
+      {
+        "Cluster": 2,
+        "Spending Score (1-100)": 79.36363636363636,
+        "Annual Income (k$)": 25.727272727272727
+      },
+      {
+        "Cluster": 3,
+        "Spending Score (1-100)": 17.114285714285714,
+        "Annual Income (k$)": 88.2
+      },
+      {
+        "Cluster": 4,
+        "Spending Score (1-100)": 20.91304347826087,
+        "Annual Income (k$)": 26.304347826086957
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/b0596851-24c6-43f1-8087-2354889eea63/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "00122f07-5cda-41bb-b388-bd967ce435d8",
+    "experiment_name": "Eksperimen K-Means Clustering",
+    "created_at": "2026-05-26T18:42:34",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "mean_zscore",
+      "name": "Mean Imputation + Z-Score",
+      "description": "Mengisi nilai yang kosong (missing values) menggunakan rata-rata (mean), kemudian menstandarkan fitur dengan menghilangkan nilai rata-rata (mean = 0) dan menskalakannya ke varians unit (Z-Score Normalization).",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "scaler": "StandardScaler"
+      }
+    },
+    "model": {
+      "model_id": "kmeans",
+      "model_name": "K-Means Clustering",
+      "n_clusters": 5,
+      "init": "k-means++",
+      "random_state": 42,
+      "note": "Menggunakan k-means++ untuk inisialisasi centroid yang optimal."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 5,
+      "noise_count": 0,
+      "silhouette_score": 0.30088229124112015,
+      "davies_bouldin_index": 0.8671489714172458,
+      "calinski_harabasz_score": 57.62252356062451,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 87,
+      "1": 32,
+      "2": 44,
+      "3": 1,
+      "4": 3
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 22.219540229885055,
+        "exports": 41.083781609195405,
+        "health": 6.246666666666667,
+        "imports": 47.79501034482759,
+        "income": 12678.965517241379,
+        "inflation": 7.727747126436781,
+        "life_expec": 72.62528735632183,
+        "total_fer": 2.3333333333333335,
+        "gdpp": 6494.390804597701
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 5.18125,
+        "exports": 46.11875,
+        "health": 9.0884375,
+        "imports": 40.584375,
+        "income": 44021.875,
+        "inflation": 2.51384375,
+        "life_expec": 80.08125,
+        "total_fer": 1.7884375,
+        "gdpp": 42118.75
+      },
+      {
+        "Cluster": 2,
+        "child_mort": 94.31363636363636,
+        "exports": 28.6775,
+        "health": 6.329090909090909,
+        "imports": 42.872727272727275,
+        "income": 3503.25,
+        "inflation": 9.89556818181818,
+        "life_expec": 59.02272727272727,
+        "total_fer": 5.047727272727273,
+        "gdpp": 1753.909090909091
+      },
+      {
+        "Cluster": 3,
+        "child_mort": 130.0,
+        "exports": 25.3,
+        "health": 5.07,
+        "imports": 17.4,
+        "income": 5150.0,
+        "inflation": 104.0,
+        "life_expec": 60.5,
+        "total_fer": 5.84,
+        "gdpp": 2330.0
+      },
+      {
+        "Cluster": 4,
+        "child_mort": 4.133333333333333,
+        "exports": 176.0,
+        "health": 6.793333333333333,
+        "imports": 156.66666666666666,
+        "income": 64033.333333333336,
+        "inflation": 2.468,
+        "life_expec": 81.43333333333334,
+        "total_fer": 1.38,
+        "gdpp": 57566.666666666664
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/00122f07-5cda-41bb-b388-bd967ce435d8/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "007bd424-86c4-48d9-aa2e-aa28d2f0ec5f",
+    "experiment_name": "Eksperimen K-Means Clustering",
+    "created_at": "2026-05-26T18:42:55",
+    "dataset": {
+      "id": "a8a6af4e-836e-4461-bbaf-e5469af7d64e",
+      "filename": "Country-data.csv",
+      "rows": 167,
+      "columns": 10
+    },
+    "preprocessing": {
+      "id": "mean_zscore",
+      "name": "Mean Imputation + Z-Score",
+      "description": "Mengisi nilai yang kosong (missing values) menggunakan rata-rata (mean), kemudian menstandarkan fitur dengan menghilangkan nilai rata-rata (mean = 0) dan menskalakannya ke varians unit (Z-Score Normalization).",
+      "info": {
+        "input_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "missing_values_before": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "missing_values_after": {
+          "child_mort": 0,
+          "exports": 0,
+          "health": 0,
+          "imports": 0,
+          "income": 0,
+          "inflation": 0,
+          "life_expec": 0,
+          "total_fer": 0,
+          "gdpp": 0
+        },
+        "output_features": [
+          "child_mort",
+          "exports",
+          "health",
+          "imports",
+          "income",
+          "inflation",
+          "life_expec",
+          "total_fer",
+          "gdpp"
+        ],
+        "scaler": "StandardScaler"
+      }
+    },
+    "model": {
+      "model_id": "kmeans",
+      "model_name": "K-Means Clustering",
+      "n_clusters": 2,
+      "init": "k-means++",
+      "random_state": 42,
+      "note": "Menggunakan k-means++ untuk inisialisasi centroid yang optimal."
+    },
+    "selected_input_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "processed_output_features": [
+      "child_mort",
+      "exports",
+      "health",
+      "imports",
+      "income",
+      "inflation",
+      "life_expec",
+      "total_fer",
+      "gdpp"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 2,
+      "noise_count": 0,
+      "silhouette_score": 0.2662961111870726,
+      "davies_bouldin_index": 1.3686222223424498,
+      "calinski_harabasz_score": 68.19141217425454,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 93,
+      "1": 74
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "child_mort": 61.80967741935484,
+        "exports": 31.44837634408602,
+        "health": 5.929569892473118,
+        "imports": 42.64802043010753,
+        "income": 6114.655913978495,
+        "inflation": 10.850494623655914,
+        "life_expec": 64.91397849462365,
+        "total_fer": 3.86741935483871,
+        "gdpp": 2942.3010752688174
+      },
+      {
+        "Cluster": 1,
+        "child_mort": 8.686486486486485,
+        "exports": 53.25,
+        "health": 7.929324324324324,
+        "imports": 52.22162162162162,
+        "income": 31006.756756756757,
+        "inflation": 3.92527027027027,
+        "life_expec": 77.64594594594595,
+        "total_fer": 1.7924324324324323,
+        "gdpp": 25559.18918918919
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/007bd424-86c4-48d9-aa2e-aa28d2f0ec5f/images/04_pca_2d.png"
+    }
+  },
+  {
+    "id": "34fbfb2b-f8ea-42da-877e-97d3f92cbff1",
+    "experiment_name": "Eksperimen K-Means Clustering",
+    "created_at": "2026-05-26T18:43:25",
+    "dataset": {
+      "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+      "filename": "Mall_Customers.csv",
+      "rows": 200,
+      "columns": 5
+    },
+    "preprocessing": {
+      "id": "mean_zscore",
+      "name": "Mean Imputation + Z-Score",
+      "description": "Mengisi nilai yang kosong (missing values) menggunakan rata-rata (mean), kemudian menstandarkan fitur dengan menghilangkan nilai rata-rata (mean = 0) dan menskalakannya ke varians unit (Z-Score Normalization).",
+      "info": {
+        "input_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)"
+        ],
+        "missing_values_before": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0
+        },
+        "missing_values_after": {
+          "Spending Score (1-100)": 0,
+          "Annual Income (k$)": 0
+        },
+        "output_features": [
+          "Spending Score (1-100)",
+          "Annual Income (k$)"
+        ],
+        "scaler": "StandardScaler"
+      }
+    },
+    "model": {
+      "model_id": "kmeans",
+      "model_name": "K-Means Clustering",
+      "n_clusters": 5,
+      "init": "k-means++",
+      "random_state": 42,
+      "note": "Menggunakan k-means++ untuk inisialisasi centroid yang optimal."
+    },
+    "selected_input_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)"
+    ],
+    "processed_output_features": [
+      "Spending Score (1-100)",
+      "Annual Income (k$)"
+    ],
+    "evaluation": {
+      "n_clusters_detected": 5,
+      "noise_count": 0,
+      "silhouette_score": 0.5546571631111091,
+      "davies_bouldin_index": 0.5722356162263351,
+      "calinski_harabasz_score": 248.64932001536357,
+      "evaluation_note": ""
+    },
+    "cluster_counts": {
+      "0": 81,
+      "1": 39,
+      "2": 22,
+      "3": 35,
+      "4": 23
+    },
+    "cluster_summary": [
+      {
+        "Cluster": 0,
+        "Spending Score (1-100)": 49.51851851851852,
+        "Annual Income (k$)": 55.2962962962963
+      },
+      {
+        "Cluster": 1,
+        "Spending Score (1-100)": 82.12820512820512,
+        "Annual Income (k$)": 86.53846153846153
+      },
+      {
+        "Cluster": 2,
+        "Spending Score (1-100)": 79.36363636363636,
+        "Annual Income (k$)": 25.727272727272727
+      },
+      {
+        "Cluster": 3,
+        "Spending Score (1-100)": 17.114285714285714,
+        "Annual Income (k$)": 88.2
+      },
+      {
+        "Cluster": 4,
+        "Spending Score (1-100)": 20.91304347826087,
+        "Annual Income (k$)": 26.304347826086957
+      }
+    ],
+    "files": {
+      "result_csv": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/hasil_clustering.csv",
+      "summary_csv": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/ringkasan_cluster.csv",
+      "counts_csv": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/jumlah_cluster.csv",
+      "preprocessed_csv": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/data_preprocessing_numerik.csv",
+      "scaled_csv": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/data_scaled.csv"
+    },
+    "images": {
+      "dendrogram": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/images/01_dendrogram.png",
+      "cluster_counts": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/images/02_cluster_counts.png",
+      "feature_means": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/images/03_feature_means.png",
+      "pca_2d": "/files/experiments/34fbfb2b-f8ea-42da-877e-97d3f92cbff1/images/04_pca_2d.png"
     }
   }
 ]

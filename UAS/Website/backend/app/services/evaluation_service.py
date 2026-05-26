@@ -22,22 +22,35 @@ def evaluate_clustering(x_scaled: pd.DataFrame, labels) -> dict:
         "evaluation_note": ""
     }
 
-    if len(set(labels)) < 2:
-        result["evaluation_note"] = "Evaluasi tidak valid karena hanya terbentuk satu cluster."
+    # Jika label non-noise < 2, metrik sil/dbi/ch tidak valid
+    if len(non_noise_labels) < 2:
+        result["evaluation_note"] = "Evaluasi metrik tidak valid karena jumlah cluster (selain noise) kurang dari 2."
         return result
 
+    # Saring noise (-1) jika ada
+    labels_arr = np.array(labels)
+    mask = labels_arr != -1
+    
+    # x_scaled mungkin dalam bentuk pandas DataFrame atau numpy array
+    if isinstance(x_scaled, pd.DataFrame):
+        x_eval = x_scaled[mask]
+    else:
+        x_eval = x_scaled[mask]
+        
+    labels_eval = labels_arr[mask]
+
     try:
-        result["silhouette_score"] = float(silhouette_score(x_scaled, labels))
+        result["silhouette_score"] = float(silhouette_score(x_eval, labels_eval))
     except Exception as e:
         result["evaluation_note"] += f"Silhouette error: {e}. "
 
     try:
-        result["davies_bouldin_index"] = float(davies_bouldin_score(x_scaled, labels))
+        result["davies_bouldin_index"] = float(davies_bouldin_score(x_eval, labels_eval))
     except Exception as e:
         result["evaluation_note"] += f"Davies-Bouldin error: {e}. "
 
     try:
-        result["calinski_harabasz_score"] = float(calinski_harabasz_score(x_scaled, labels))
+        result["calinski_harabasz_score"] = float(calinski_harabasz_score(x_eval, labels_eval))
     except Exception as e:
         result["evaluation_note"] += f"Calinski-Harabasz error: {e}. "
 

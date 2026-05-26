@@ -60,7 +60,7 @@ def run_experiment(payload: dict) -> dict:
     os.makedirs(exp_dir, exist_ok=True)
 
     # Data asli + label cluster, untuk download hasil akhir
-    result_df = df.reset_index(drop=True).copy()
+    result_df = df.loc[raw_data.index].reset_index(drop=True).copy()
     result_df["Cluster"] = labels
 
     # Data preprocessing numerik + cluster, untuk analisis ringkasan
@@ -82,13 +82,26 @@ def run_experiment(payload: dict) -> dict:
     raw_numeric_df.to_csv(preprocessed_path, index=False)
     x_scaled.to_csv(scaled_path, index=False)
 
+    model_config = model.get_config(model_params)
+    title_suffix = ""
+    if model_id == "dbscan":
+        resolved_eps = model_config.get("resolved_eps")
+        min_samples = model_config.get("min_samples")
+        if resolved_eps is not None:
+            title_suffix = f"\n(eps={resolved_eps}, minPts={min_samples})"
+    elif model_id == "kmeans":
+        k = model_config.get("n_clusters")
+        if k is not None:
+            title_suffix = f"\n(k={k})"
+
     image_paths = create_visualizations(
         x_scaled=x_scaled,
         raw_data=raw_data,
         labels=labels,
         experiment_dir=exp_dir,
         feature_columns=processed_feature_columns,
-        dendrogram_sample_size=int(payload.get("dendrogram_sample_size", 100))
+        dendrogram_sample_size=int(payload.get("dendrogram_sample_size", 100)),
+        title_suffix=title_suffix
     )
 
     image_urls = {key: _to_file_url(path) for key, path in image_paths.items()}

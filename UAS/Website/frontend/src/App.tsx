@@ -28,6 +28,10 @@ export default function App() {
   const [nClusters, setNClusters] = useState(4);
   const [linkage, setLinkage] = useState("ward");
   const [metric, setMetric] = useState("euclidean");
+  
+  const [dbscanEps, setDbscanEps] = useState("auto");
+  const [dbscanMinSamples, setDbscanMinSamples] = useState(5);
+  
   const [experimentName, setExperimentName] = useState("Eksperimen Agglomerative Clustering");
 
   const [preview, setPreview] = useState<any>(null);
@@ -52,7 +56,8 @@ export default function App() {
         lower.includes("label") ||
         lower.includes("target") ||
         lower.includes("class") ||
-        lower.includes("engagementlevel")
+        lower.includes("engagementlevel") ||
+        lower.includes("country")
       );
     });
   }, [datasetColumns, defaultFeatures]);
@@ -80,6 +85,16 @@ export default function App() {
   useEffect(() => {
     refreshAll();
   }, []);
+
+  useEffect(() => {
+    if (selectedModel === "dbscan") {
+      setExperimentName("Eksperimen DBSCAN Clustering");
+    } else if (selectedModel === "kmeans") {
+      setExperimentName("Eksperimen K-Means Clustering");
+    } else {
+      setExperimentName("Eksperimen Agglomerative Clustering");
+    }
+  }, [selectedModel]);
 
   useEffect(() => {
     if (selectedDataset) {
@@ -125,7 +140,8 @@ export default function App() {
             lower.includes("label") ||
             lower.includes("target") ||
             lower.includes("class") ||
-            lower.includes("engagementlevel")
+            lower.includes("engagementlevel") ||
+            lower.includes("country")
           );
         });
 
@@ -168,17 +184,28 @@ export default function App() {
 
     setLoading(true);
     try {
+      const modelParams = selectedModel === "dbscan" 
+        ? {
+            eps: dbscanEps,
+            min_samples: Number(dbscanMinSamples)
+          }
+        : selectedModel === "kmeans"
+        ? {
+            n_clusters: Number(nClusters)
+          }
+        : {
+            n_clusters: Number(nClusters),
+            metric,
+            linkage
+          };
+
       const payload = {
         experiment_name: experimentName,
         dataset_id: selectedDataset,
         preprocessing_id: selectedPreprocessor,
         model_id: selectedModel,
         feature_columns: selectedFeatures,
-        model_params: {
-          n_clusters: Number(nClusters),
-          metric,
-          linkage
-        },
+        model_params: modelParams,
         dendrogram_sample_size: 100
       };
 
@@ -337,32 +364,68 @@ export default function App() {
             onChange={(e) => setExperimentName(e.target.value)}
           />
 
-          <label>Jumlah Cluster</label>
-          <input
-            type="number"
-            min={2}
-            value={nClusters}
-            onChange={(e) => setNClusters(Number(e.target.value))}
-          />
+          {selectedModel === "dbscan" && (
+            <>
+              <label>Epsilon (eps)</label>
+              <input
+                type="text"
+                value={dbscanEps}
+                onChange={(e) => setDbscanEps(e.target.value)}
+                placeholder="auto atau angka desimal (cth: 0.3)"
+              />
 
-          <label>Linkage</label>
-          <select value={linkage} onChange={(e) => setLinkage(e.target.value)}>
-            <option value="ward">ward</option>
-            <option value="complete">complete</option>
-            <option value="average">average</option>
-            <option value="single">single</option>
-          </select>
+              <label>Min Samples (minPts)</label>
+              <input
+                type="number"
+                min={2}
+                value={dbscanMinSamples}
+                onChange={(e) => setDbscanMinSamples(Number(e.target.value))}
+              />
+            </>
+          )}
 
-          <label>Metric</label>
-          <select value={metric} onChange={(e) => setMetric(e.target.value)}>
-            <option value="euclidean">euclidean</option>
-            <option value="manhattan">manhattan</option>
-            <option value="cosine">cosine</option>
-          </select>
+          {selectedModel === "kmeans" && (
+            <>
+              <label>Jumlah Cluster</label>
+              <input
+                type="number"
+                min={2}
+                value={nClusters}
+                onChange={(e) => setNClusters(Number(e.target.value))}
+              />
+            </>
+          )}
 
-          <p className="muted">
-            Catatan: Jika linkage = ward, metric otomatis dianggap euclidean oleh backend.
-          </p>
+          {selectedModel === "agglomerative" && (
+            <>
+              <label>Jumlah Cluster</label>
+              <input
+                type="number"
+                min={2}
+                value={nClusters}
+                onChange={(e) => setNClusters(Number(e.target.value))}
+              />
+
+              <label>Linkage</label>
+              <select value={linkage} onChange={(e) => setLinkage(e.target.value)}>
+                <option value="ward">ward</option>
+                <option value="complete">complete</option>
+                <option value="average">average</option>
+                <option value="single">single</option>
+              </select>
+
+              <label>Metric</label>
+              <select value={metric} onChange={(e) => setMetric(e.target.value)}>
+                <option value="euclidean">euclidean</option>
+                <option value="manhattan">manhattan</option>
+                <option value="cosine">cosine</option>
+              </select>
+
+              <p className="muted">
+                Catatan: Jika linkage = ward, metric otomatis dianggap euclidean oleh backend.
+              </p>
+            </>
+          )}
 
           <button className="primary" onClick={handleRunExperiment} disabled={loading}>
             {loading ? "Memproses..." : "Jalankan Eksperimen"}
@@ -417,6 +480,12 @@ export default function App() {
                 <span>Cluster</span>
                 <strong>{result.evaluation?.n_clusters_detected}</strong>
               </div>
+              {result.evaluation?.noise_count !== undefined && result.evaluation?.noise_count > 0 && (
+                <div>
+                  <span>Noise Data</span>
+                  <strong>{result.evaluation.noise_count}</strong>
+                </div>
+              )}
             </div>
 
             <h3>Visualisasi</h3>

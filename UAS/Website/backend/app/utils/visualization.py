@@ -20,7 +20,8 @@ def create_visualizations(
     labels,
     experiment_dir: str,
     feature_columns: list[str],
-    dendrogram_sample_size: int = 100
+    dendrogram_sample_size: int = 100,
+    title_suffix: str = ""
 ) -> dict:
     image_dir = os.path.join(experiment_dir, "images")
     os.makedirs(image_dir, exist_ok=True)
@@ -34,7 +35,7 @@ def create_visualizations(
 
     plt.figure(figsize=(16, 8))
     dendrogram(linked)
-    plt.title("Dendrogram Hierarchical Clustering")
+    plt.title(f"Dendrogram Hierarchical Clustering{title_suffix}")
     plt.xlabel("Data Sample")
     plt.ylabel("Jarak")
     dendro_path = os.path.join(image_dir, "01_dendrogram.png")
@@ -46,7 +47,7 @@ def create_visualizations(
 
     plt.figure(figsize=(8, 5))
     cluster_counts.plot(kind="bar")
-    plt.title("Jumlah Data pada Setiap Cluster")
+    plt.title(f"Jumlah Data pada Setiap Cluster{title_suffix}")
     plt.xlabel("Cluster")
     plt.ylabel("Jumlah Data")
     plt.xticks(rotation=0)
@@ -60,7 +61,7 @@ def create_visualizations(
     cluster_summary = result.groupby("Cluster")[feature_columns].mean()
 
     cluster_summary.plot(kind="bar", figsize=(14, 7))
-    plt.title("Rata-rata Fitur pada Setiap Cluster")
+    plt.title(f"Rata-rata Fitur pada Setiap Cluster{title_suffix}")
     plt.xlabel("Cluster")
     plt.ylabel("Nilai Rata-rata")
     plt.xticks(rotation=0)
@@ -73,17 +74,39 @@ def create_visualizations(
     pca_result = pca.fit_transform(x_scaled)
 
     plt.figure(figsize=(9, 6))
-    plt.scatter(
-        pca_result[:, 0],
-        pca_result[:, 1],
-        c=labels,
-        alpha=0.7
-    )
-    plt.title("Visualisasi Cluster Menggunakan PCA 2D")
+    
+    import numpy as np
+    labels_arr = np.array(labels)
+    unique_labels = np.unique(labels_arr)
+    
+    for lbl in unique_labels:
+        mask = (labels_arr == lbl)
+        if lbl == -1:
+            plt.scatter(
+                pca_result[mask, 0],
+                pca_result[mask, 1],
+                c='gray',
+                marker='x',
+                alpha=0.7,
+                label='Noise (-1)'
+            )
+        else:
+            plt.scatter(
+                pca_result[mask, 0],
+                pca_result[mask, 1],
+                marker='o',
+                alpha=0.7,
+                label=f'Cluster {lbl}'
+            )
+            
+    plt.title(f"Visualisasi Cluster Menggunakan PCA 2D{title_suffix}")
     plt.xlabel("PCA 1")
     plt.ylabel("PCA 2")
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    
     pca_path = os.path.join(image_dir, "04_pca_2d.png")
     _save_current_plot(pca_path)
     image_paths["pca_2d"] = pca_path
 
     return image_paths
+
