@@ -86,7 +86,7 @@ def run_experiment(payload: dict) -> dict:
     title_suffix = ""
     if model_id == "dbscan":
         resolved_eps = model_config.get("resolved_eps")
-        min_samples = model_config.get("min_samples")
+        min_samples = model_config.get("resolved_min_samples", model_config.get("min_samples"))
         if resolved_eps is not None:
             title_suffix = f"\n(eps={resolved_eps}, minPts={min_samples})"
     elif model_id == "kmeans":

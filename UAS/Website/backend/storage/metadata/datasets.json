@@ -21,10 +21,26 @@
     "created_at": "2026-05-26T18:04:10"
   },
   {
-    "id": "940cf32b-74f7-4f9d-82aa-7af7765936dc",
-    "original_filename": "dbe1338a-c47f-44bf-8c51-5806b34f6a8a_online_gaming_behavior_sample_1000.csv",
-    "stored_filename": "940cf32b-74f7-4f9d-82aa-7af7765936dc_dbe1338a-c47f-44bf-8c51-5806b34f6a8a_online_gaming_behavior_sample_1000.csv",
-    "path": "/home/han/Documents/Kuliah/S6/Machine Learning/Tugas/TUBES/Website/TUBES_ML/UAS/Website/backend/storage/datasets/940cf32b-74f7-4f9d-82aa-7af7765936dc_dbe1338a-c47f-44bf-8c51-5806b34f6a8a_online_gaming_behavior_sample_1000.csv",
+    "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
+    "original_filename": "Mall_Customers.csv",
+    "stored_filename": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95_Mall_Customers.csv",
+    "path": "/home/han/Documents/Kuliah/S6/Machine Learning/Tugas/TUBES/Website/TUBES_ML/UAS/Website/backend/storage/datasets/3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95_Mall_Customers.csv",
+    "rows": 200,
+    "columns": 5,
+    "column_names": [
+      "CustomerID",
+      "Genre",
+      "Age",
+      "Annual Income (k$)",
+      "Spending Score (1-100)"
+    ],
+    "created_at": "2026-05-26T18:16:18"
+  },
+  {
+    "id": "7c3df584-bb13-4e9f-b162-63bee2406686",
+    "original_filename": "Game.csv",
+    "stored_filename": "7c3df584-bb13-4e9f-b162-63bee2406686_Game.csv",
+    "path": "/home/han/Documents/Kuliah/S6/Machine Learning/Tugas/TUBES/Website/TUBES_ML/UAS/Website/backend/storage/datasets/7c3df584-bb13-4e9f-b162-63bee2406686_Game.csv",
     "rows": 1000,
     "columns": 13,
     "column_names": [
@@ -42,22 +58,6 @@
       "AchievementsUnlocked",
       "EngagementLevel"
     ],
-    "created_at": "2026-05-26T18:11:44"
-  },
-  {
-    "id": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95",
-    "original_filename": "Mall_Customers.csv",
-    "stored_filename": "3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95_Mall_Customers.csv",
-    "path": "/home/han/Documents/Kuliah/S6/Machine Learning/Tugas/TUBES/Website/TUBES_ML/UAS/Website/backend/storage/datasets/3fc0d9c2-fb0e-4bb6-bb1a-ac5946856c95_Mall_Customers.csv",
-    "rows": 200,
-    "columns": 5,
-    "column_names": [
-      "CustomerID",
-      "Genre",
-      "Age",
-      "Annual Income (k$)",
-      "Spending Score (1-100)"
-    ],
-    "created_at": "2026-05-26T18:16:18"
+    "created_at": "2026-05-26T19:18:08"
   }
 ]

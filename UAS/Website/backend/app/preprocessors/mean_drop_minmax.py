@@ -47,7 +47,16 @@ class MeanDropMinMaxPreprocessor(BasePreprocessor):
         
         info["duplicates_dropped"] = before_drop - after_drop
 
-        # Pastikan semuanya menjadi tipe data numerik
+        # 3. Ordinal Encoding untuk kolom bertipe teks/kategori
+        from sklearn.preprocessing import LabelEncoder
+        for col in selected.columns:
+            if selected[col].dtype == 'object' or selected[col].dtype.name == 'category':
+                le = LabelEncoder()
+                # Ubah semua jadi string untuk menghindari error tipe campuran
+                selected[col] = selected[col].astype(str) 
+                selected[col] = le.fit_transform(selected[col])
+
+        # 4. Pastikan semuanya terdeteksi sebagai tipe data numerik
         for col in selected.columns:
             selected[col] = pd.to_numeric(selected[col], errors='coerce').fillna(0)
 

@@ -30,7 +30,7 @@ export default function App() {
   const [metric, setMetric] = useState("euclidean");
   
   const [dbscanEps, setDbscanEps] = useState("auto");
-  const [dbscanMinSamples, setDbscanMinSamples] = useState(5);
+  const [dbscanMinSamples, setDbscanMinSamples] = useState<string | number>("auto");
   
   const [experimentName, setExperimentName] = useState("Eksperimen Agglomerative Clustering");
 
@@ -187,7 +187,7 @@ export default function App() {
       const modelParams = selectedModel === "dbscan" 
         ? {
             eps: dbscanEps,
-            min_samples: Number(dbscanMinSamples)
+            min_samples: dbscanMinSamples === "auto" ? "auto" : Number(dbscanMinSamples)
           }
         : selectedModel === "kmeans"
         ? {
@@ -376,10 +376,10 @@ export default function App() {
 
               <label>Min Samples (minPts)</label>
               <input
-                type="number"
-                min={2}
+                type="text"
                 value={dbscanMinSamples}
-                onChange={(e) => setDbscanMinSamples(Number(e.target.value))}
+                onChange={(e) => setDbscanMinSamples(e.target.value)}
+                placeholder="auto atau angka (cth: 5)"
               />
             </>
           )}
